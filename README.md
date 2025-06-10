@@ -8,6 +8,8 @@
 
 ### npm install tailwindcss @tailwindcss/vite
 
+### npm install -D @types/node
+
 ```js
 export default tseslint.config({
   extends: [
