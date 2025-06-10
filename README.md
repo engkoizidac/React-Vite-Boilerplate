@@ -2,9 +2,11 @@
 
 ## History Installation Log
 
-npm create vite@latest .
-npm install
-npm install tailwindcss @tailwindcss/vite
+### npm create vite@latest .
+
+### npm install
+
+### npm install tailwindcss @tailwindcss/vite
 
 ```js
 export default tseslint.config({
