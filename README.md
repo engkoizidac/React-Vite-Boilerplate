@@ -1,10 +1,20 @@
 # React Vite BoilerPlate
 
-## History Installation Log
+A React Vite project with a user management and ready for production.
 
--npm create vite@latest .
--npm install
--npm install tailwindcss @tailwindcss/vite
--npm install -D @types/node
+## 🛠️ Tools
 
+1. NodeJS
+2. React Vite
+3. Prisma ORM
+4. Mysql
+5. Tailwind CSS
+6. ShadCn
+7. React Router
 
+## 🛠️ Installation
+
+1. -npm create vite@latest .
+2. -npm install
+3. -npm install tailwindcss @tailwindcss/vite
+4. -npm install -D @types/node
