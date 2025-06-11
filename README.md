@@ -12,7 +12,7 @@ A React Vite project with a user management and ready for production.
 6. ShadCn
 7. React Router
 
-## 🛠️ Installation
+## 🛠️ Setup and Installation Log
 
 1. -npm create vite@latest .
 2. -npm install
