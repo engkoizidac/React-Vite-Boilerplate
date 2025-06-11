@@ -18,3 +18,4 @@ A React Vite project with a user management and ready for production.
 2. -npm install
 3. -npm install tailwindcss @tailwindcss/vite
 4. -npm install -D @types/node
+5. npm install react-router-dom
