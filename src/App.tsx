@@ -1,13 +1,22 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button variant="secondary">Click me</Button>
-    </>
+    <div className="min-h-screen flex flex-col bg-background">
+      <BrowserRouter>
+        <Navbar />
+        <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </div>
   );
 }
-
 export default App;
