@@ -1,53 +1,21 @@
 # React Vite BoilerPlate
 
-## History Installation Log
+A React Vite project with a user management and ready for production.
 
-### npm create vite@latest .
+## 🛠️ Tools
 
-### npm install
+1. NodeJS
+2. React Vite
+3. Prisma ORM
+4. Mysql
+5. Tailwind CSS
+6. ShadCn
+7. React Router
 
-### npm install tailwindcss @tailwindcss/vite
+## 🛠️ Setup and Installation Log
 
-### npm install -D @types/node
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+1. npm create vite@latest .
+2. npm install
+3. npm install tailwindcss @tailwindcss/vite
+4. npm install -D @types/node
+5. npm install react-router-dom
