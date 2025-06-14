@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import axios from "../api/auth";
+
 import {
   Card,
   CardContent,
@@ -9,14 +10,31 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.post("/auth/login", { username, password });
+      //alert("Login successful!");
+      navigate("/dashboard"); // Use router navigation
+    } catch (err) {
+      //alert("Login failed");
+      console.error(err);
+    }
+  };
 
   return (
     <section className="flex flex-col items-center justify-center min-h-[70vh] px-4">
       <Card className="w-full max-w-md bg-card rounded-lg">
-        <form className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6">
           <CardHeader className="space-y-1">
             <h2 className="text-2xl font-semibold">User Login</h2>
             <p className="text-sm text-muted-foreground">
@@ -26,7 +44,12 @@ export default function Login() {
           <CardContent className="space-y-4 pt-8">
             <div className="space-y-3">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" name="username" autoComplete="username" />
+              <Input
+                id="username"
+                name="username"
+                autoComplete="username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className="space-y-3">
               <Label htmlFor="password">Password</Label>
@@ -37,6 +60,7 @@ export default function Login() {
                   type={showPassword ? "text" : "password"}
                   className="pr-10"
                   autoComplete="current-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button
                   type="button"
