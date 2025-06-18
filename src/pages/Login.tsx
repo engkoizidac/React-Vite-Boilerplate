@@ -24,10 +24,10 @@ export default function Login() {
     try {
       await axios.post("/auth/login", { username, password });
       //alert("Login successful!");
-      navigate("/dashboard"); // Use router navigation
+      navigate("/"); // Use router navigation
     } catch (err) {
       //alert("Login failed");
-      console.error(err);
+      navigate("/server-error"); // Use router navigation
     }
   };
 

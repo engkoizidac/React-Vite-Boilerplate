@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 
 import { AuthProvider } from "./auth/AuthProvider";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import ServerError from "./pages/errors/ServerError";
 
 function App() {
   return (
@@ -17,12 +19,19 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/server-error" element={<ServerError />} />
+              <Route
+                path="/about"
+                element={
+                  <ProtectedRoute>
+                    <About />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </main>
         </BrowserRouter>
       </AuthProvider>
-      hello world
     </div>
   );
 }

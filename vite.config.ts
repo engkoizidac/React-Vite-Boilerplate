@@ -10,4 +10,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    host: true, // Allows access from other devices on the network
+    port: 5173, // Default Vite port
+    strictPort: true, // Fail if port is already in use
+    proxy: {
+      "/api": {
+        target: "http://localhost:4000", // Your backend API URL
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });

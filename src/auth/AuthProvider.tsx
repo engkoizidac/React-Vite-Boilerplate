@@ -12,7 +12,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     axios
-      .get("/protected")
+      .get("auth/protected", {
+        withCredentials: true,
+      })
       .then(() => setIsAuthenticated(true))
       .catch(() => setIsAuthenticated(false));
   }, []);
