@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import { AuthProvider } from "./auth/AuthProvider";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ServerError from "./pages/errors/ServerError";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -17,7 +18,22 @@ function App() {
           <Navbar />
           <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/server-error" element={<ServerError />} />
               <Route

@@ -12,9 +12,11 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/auth/AuthProvider"; // <-- import your auth context
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth(); // <-- get login function from AuthProvider
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,11 +25,10 @@ export default function Login() {
     e.preventDefault();
     try {
       await axios.post("/auth/login", { username, password });
-      //alert("Login successful!");
-      navigate("/"); // Use router navigation
+      if (login) login(); // update authentication state if using context
+      navigate("/dashboard"); // navigate to dashboard after login
     } catch (err) {
-      //alert("Login failed");
-      navigate("/server-error"); // Use router navigation
+      navigate("/server-error");
     }
   };
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/auth/AuthProvider";
 
 // If using shadcn/ui, import Button and DropdownMenu primitives
 // import { Button } from "@/components/ui/button";
@@ -9,78 +10,89 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
+  const { isAuthenticated } = useAuth();
+  //console.log("isAuthenticated", isAuthenticated);
+
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo/Brand */}
         <Link
-          to="/"
+          to="/dashboard"
           className="flex items-center gap-2 font-bold text-lg text-primary"
         >
           <span className="text-primary pl-4">EngkoiApp</span>
         </Link>
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-2">
-          <Link
-            to="/"
-            className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
-          >
-            About
-          </Link>
-          {/* Services Dropdown */}
-          <div className="relative">
-            <button
-              className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors flex items-center gap-1"
-              onClick={() => setServicesOpen((open) => !open)}
-              onBlur={() => setTimeout(() => setServicesOpen(false), 150)}
-            >
-              Admin
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
+          {isAuthenticated ? (
+            <div className="hidden md:flex items-center gap-2">
+              <Link
+                to="/dashboard"
+                className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            {servicesOpen && (
-              <div className="absolute left-0 mt-2 w-44 rounded-md border bg-popover shadow-lg z-20 py-2 animate-in fade-in-0 zoom-in-95">
-                <Link
-                  to="/services/web"
-                  className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
-                  onClick={() => setServicesOpen(false)}
+                Dashboard
+              </Link>
+              <Link
+                to="/about"
+                className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
+              >
+                About
+              </Link>
+              {/* Services Dropdown */}
+              <div className="relative">
+                <button
+                  className="px-4 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors flex items-center gap-1"
+                  onClick={() => setServicesOpen((open) => !open)}
+                  onBlur={() => setTimeout(() => setServicesOpen(false), 150)}
                 >
-                  User Account
-                </Link>
-                <Link
-                  to="/services/mobile"
-                  className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
-                  onClick={() => setServicesOpen(false)}
-                >
-                  User Role Management
-                </Link>
+                  Admin
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {servicesOpen && (
+                  <div className="absolute left-0 mt-2 w-44 rounded-md border bg-popover shadow-lg z-20 py-2 animate-in fade-in-0 zoom-in-95">
+                    <Link
+                      to="/services/web"
+                      className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
+                      onClick={() => setServicesOpen(false)}
+                    >
+                      User Account
+                    </Link>
+                    <Link
+                      to="/services/mobile"
+                      className="block px-4 py-2 text-sm hover:bg-muted transition-colors"
+                      onClick={() => setServicesOpen(false)}
+                    >
+                      User Role Management
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-          {/* Login Button */}
-          <Link
-            to="/login"
-            className="ml-2 px-4 py-2 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow"
-          >
-            Login
-          </Link>
+              {/* Logout Button */}
+              <Link
+                to="/login"
+                className="ml-2 px-4 py-2 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow"
+              >
+                Logout
+              </Link>
+            </div>
+          ) : (
+            // // Redirect to login if not authenticated
+            // <Navigate to="/login" replace />
+            <></>
+          )}
         </div>
         {/* Mobile Hamburger */}
         <div className="md:hidden">
