@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "production": "vite build && vite preview"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -23,7 +23,8 @@
     "react-router": "^7.6.2",
     "react-router-dom": "^7.6.2",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
