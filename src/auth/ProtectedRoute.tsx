@@ -9,7 +9,7 @@ export default function ProtectedRoute({
 }) {
   const { isAuthenticated, loading } = useAuth();
 
-  console.log("ProtectedRoute isAuthenticated:", isAuthenticated);
+  //console.log("ProtectedRoute isAuthenticated:", isAuthenticated);
 
   if (loading) {
     // You can return a spinner or null while checking auth

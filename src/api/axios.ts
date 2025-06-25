@@ -10,13 +10,14 @@ axiosInstance.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response) {
-      // Server responded with a status other than 2xx
-      if (err.response.status === 401) {
-        // Optionally, you can trigger a global event or redirect here
-        console.warn("Unauthorized – please log in.");
-      } else if (err.response.status === 403) {
-        console.warn("Forbidden – you do not have access.");
-      } else if (err.response.status >= 500) {
+      // // Server responded with a status other than 2xx
+      // if (err.response.status === 401) {
+      //   // Optionally, you can trigger a global event or redirect here
+      //   console.warn("Unauthorized – please log in.");
+      // } else if (err.response.status === 403) {
+      //   console.warn("Forbidden – you do not have access.");
+      // } else
+      if (err.response.status >= 500) {
         console.error("Server error:", err.response.statusText);
       }
     } else if (err.request) {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "@/api/auth";
+import axios from "@/api/axios";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -26,30 +26,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("auth/protected", {
-        withCredentials: true,
-      })
+      .get("auth/protected", {})
       .then(() => {
         setIsAuthenticated(true);
         setError(null);
       })
-      .catch((err) => {
+      .catch(() => {
         setIsAuthenticated(false);
-        if (err.response) {
-          if (err.response.status === 401) {
-            setError("You are not authenticated. Please log in.");
-          } else if (err.response.status === 403) {
-            setError("Access forbidden.");
-          } else if (err.response.status >= 500) {
-            setError("Server error. Please try again later.");
-          } else {
-            setError("Authentication failed.");
-          }
-        } else if (err.request) {
-          setError("No response from server. Please check your network.");
-        } else {
-          setError("An unexpected error occurred.");
-        }
       })
       .finally(() => setLoading(false));
   }, []);
